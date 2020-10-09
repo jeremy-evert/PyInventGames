@@ -45,4 +45,4 @@ while 'yes' == playAgain or 'y' == playAgain:
     playAgain = input()
 
 
-print('Program complete.')
+print('Program complete. Bye.')
