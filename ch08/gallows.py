@@ -78,16 +78,17 @@ def getGuess(alreadyGuessed):
 
 def playAgain():
     print('Do you want to play again? (yes or no)')
-    return input().lower().startswitch('y')
+    return input().lower().startswith('y')
 
 def printGreeting():
     print(Gallows_PICS[6], '*_\|*_G_A_L_L_O_W_S_*|/_*')
 
 print('begin program.')
 printGreeting()
-middedLetters = ''
+missedLetters = ''
 correctLetters = ''
 secretWord = getRandomWord(words)
+gameIsDone = False
 
 while True:
     displayBoard(missedLetters, correctLetters, secretWord)
@@ -95,11 +96,11 @@ while True:
     guess = getGuess(missedLetters + correctLetters)
 
     if guess in secretWord:
-         correctLetters = correctLetters + guess
+        correctLetters = correctLetters + guess
 
-        foundAllLetters = Ture
+        foundAllLetters = True
         for i in range(len(secretWord)):
-            if secretWord[i] not in correctLEtters:
+            if secretWord[i] not in correctLetters:
                 foundAllLetters = False
                 break
             if foundAllLetters:
@@ -107,6 +108,20 @@ while True:
                 gameIsDone = True
     else:
         missedLetters = missedLetters + guess
+
+        if len(missedLetters) == len(Gallows_PICS) - 1:
+            displayBoard(missedLetters, correctLetters, secretWord)
+            print ('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
+            gameIsDone = True
+
+    if gameIsDone:
+        if playAgain():
+            missedLetters = ''
+            correctLetters = ''
+            gameIsDone = False
+            secretWord = getRandomWord(words)
+        else:
+            break
 
 
 
