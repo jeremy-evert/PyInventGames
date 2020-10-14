@@ -8,6 +8,4 @@ print('This means that you need to follow programming rules in files.')
 bacon = 10
 eggs = 15
 spam = bacon + eggs
-print(
-'when bacon is 10 and eggs is 15, and spam is bacon + eggs, spam is:',
-spam)
+print('when bacon is 10 and eggs is 15, and spam is bacon + eggs, spam is:',spam)
